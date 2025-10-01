@@ -1,7 +1,7 @@
 // src/services/auth.service.ts
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import pool from '../config/db';
+import pool from '../config/database';
 import { RowDataPacket } from 'mysql2';
 
 export const registerUser = async (userData: any) => {

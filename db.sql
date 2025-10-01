@@ -13,3 +13,18 @@ CREATE TABLE `users` (
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+CREATE TABLE loans (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    amountRequested DECIMAL(12, 2) NOT NULL,
+    loanType VARCHAR(100) NOT NULL,
+    tenure INT NOT NULL, -- Storing tenure in months
+    purpose TEXT NOT NULL,
+    guardianName VARCHAR(255),
+    guardianOccupation VARCHAR(255),
+    guardianAnnualIncome DECIMAL(15, 2),
+    collateral TEXT,
+    status ENUM('pending', 'approved', 'rejected', 'disbursed') NOT NULL DEFAULT 'pending',
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
